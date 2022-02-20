@@ -1,0 +1,9 @@
+---
+# Tasks for netboot
+
+#- name: example
+#  action: example
+#  notify:
+#    - restart service
+#  tags:
+#    - example
