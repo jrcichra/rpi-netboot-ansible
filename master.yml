@@ -1,4 +1,4 @@
 ---
 # master playbook
 
-- include: netboot.yml
+- include: download.yml

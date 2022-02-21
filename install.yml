@@ -1,0 +1,16 @@
+---
+# install role
+
+- hosts: netboot
+  gather_facts: no    # the inventory probably contains non-existent hosts
+  tasks:
+    - name: Start install role
+      include_role:
+        name: install
+      vars:
+        image: "{{ (loop_var.values() | list)[0].image }}"
+        mac: "{{ (loop_var.values() | list)[0].mac | replace(':','-') | lower }}"
+        tftp_dir: "{{ hostvars['localhost']['tftp_dir'] }}"
+      loop: "{{ hostvars['localhost']['hosts'] }}"
+      loop_control:
+        loop_var: loop_var

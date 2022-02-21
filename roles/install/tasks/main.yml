@@ -1,0 +1,29 @@
+---
+
+- name: "Make the tftp_dir"
+  file:
+    path: "{{ tftp_dir }}"
+    state: directory
+
+- name: "Make a directory for the MAC address"
+  file:
+    path: "{{ tftp_dir }}/{{ mac }}"
+    state: directory
+
+- name: "Extract the zip file"
+  unarchive:
+    src: "{{ playbook_dir }}/artifacts/{{ download_links[image] | basename }}"
+    dest: "{{ playbook_dir }}/artifacts/"
+    creates: "{{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img') }}"
+
+- name: "Mount the fat32 partiton as loopback"
+  shell: "losetup -fP {{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img') }}"
+  become: true
+
+- name: "Find the loopback device"
+  shell: "losetup -a | grep {{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img') }}"
+  register: loopback
+
+- name: debug print loopback
+  debug:
+    msg: "{{ loopback.stdout }}"

@@ -1,6 +1,0 @@
----
-# netboot role
-
-- hosts: netboot
-  roles:
-    - { role: netboot }

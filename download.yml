@@ -1,0 +1,14 @@
+---
+# download role
+
+- hosts: netboot
+  gather_facts: no    # the inventory probably contains non-existent hosts
+  tasks:
+    - name: Start download role
+      include_role:
+        name: download
+      vars:
+        image: "{{ (loop_var.values() | list)[0].image }}"
+      loop: "{{ hostvars['localhost']['hosts'] }}"
+      loop_control:
+        loop_var: loop_var

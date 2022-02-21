@@ -1,0 +1,11 @@
+netboot:
+  hosts:
+    localhost:
+      tftp_dir: /home/justin/git/rpi-netboot-ansible/tftproot
+      hosts:
+        - cm4pi:
+            mac: "00:00:00:00:00:00"
+            image: raspberry_pi_os_64bit_desktop
+        - timpi:
+            mac: "00:00:00:00:00:01"
+            image: raspberry_pi_os_64bit_lite
