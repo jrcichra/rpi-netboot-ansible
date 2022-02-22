@@ -27,16 +27,16 @@
 
 - name: "Extract the zip file"
   unarchive:
-    src: "{{ artifacts_dir }}/{{ download_links[image] | basename }}"
+    src: "{{ artifacts_dir }}/{{ download_links[mirror][image] | basename }}"
     dest: "{{ artifacts_dir }}"
-    creates: "{{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img') }}"
+    creates: "{{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.zip','.img') }}"
 
 - name: "Mount the image as a loopback"
-  shell: "losetup --find --show --partscan --read-only {{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img') }}"
+  shell: "losetup --find --show --partscan --read-only {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.zip','.img') }}"
   become: true
 
 - name: "Find the loopback device"
-  shell: "losetup -a | grep {{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img')}} | cut -d: -f1 | head -1"
+  shell: "losetup -a | grep {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.zip','.img')}} | cut -d: -f1 | head -1"
   register: loopback
 
 - name: debug print loopback
