@@ -3,6 +3,7 @@
 
 - hosts: netboot
   gather_facts: no    # the inventory probably contains non-existent hosts
+  connection: local
   tasks:
     - name: Start install role
       include_role:
