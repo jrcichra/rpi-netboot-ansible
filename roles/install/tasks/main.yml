@@ -27,8 +27,8 @@
 
 - name: "Extract the zip file"
   unarchive:
-    src: "{{ playbook_dir }}/artifacts/{{ download_links[image] | basename }}"
-    dest: "{{ playbook_dir }}/artifacts/"
+    src: "{{ artifacts_dir }}/{{ download_links[image] | basename }}"
+    dest: "{{ artifacts_dir }}"
     creates: "{{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img') }}"
 
 - name: "Mount the image as a loopback"
