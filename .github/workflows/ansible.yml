@@ -26,6 +26,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run Playbooks
-        run: |
-          ansible-playbook -i inventory.yml download.yml --extra-vars 'mirror=jrcichra.dev'
-          ansible-playbook -i inventory.yml install.yml --extra-vars 'mirror=jrcichra.dev'
+        run: ansible-playbook -i inventory.yml download.yml --extra-vars 'mirror=jrcichra.dev'
+
+      - name: Run install.yml
+        run: ansible-playbook -i inventory.yml install.yml --extra-vars 'mirror=jrcichra.dev'

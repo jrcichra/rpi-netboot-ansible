@@ -2,11 +2,11 @@
 
 - name: Make artifacts directory
   file:
-    path: "{{ playbook_dir }}/artifacts"
+    path: "{{ artifacts_dir }}"
     state: directory
 
 - name: Download Raspberry Pi OS
   get_url:
     url: "{{ download_links[mirror][image] }}"
-    dest: "{{ playbook_dir}}/artifacts/{{ download_links[mirror][image] | basename }}"
+    dest: "{{ artifacts_dir }}/{{ download_links[mirror][image] | basename }}"
     use_proxy: no
