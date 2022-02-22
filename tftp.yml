@@ -1,3 +1,5 @@
 - hosts: netboot
+  gather_facts: false    # the inventory probably contains non-existent hosts
+  connection: local
   roles:
     - { role: tftp }
