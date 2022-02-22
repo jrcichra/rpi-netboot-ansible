@@ -25,6 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Put ssh public key in authorized_keys
+      - name: "Add SSH key"
+        run: |
+          ssh-keygen -t rsa -b 4096 -C "{{ github.actor }}@{{ github.host }}" -f ~/.ssh/id_rsa -N ""
+          cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
       # Runs a single command using the runners shell
       - name: Run download.yml
         run: ansible-playbook -i inventory.yml download.yml
