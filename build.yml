@@ -2,12 +2,12 @@
 # install role
 
 - hosts: netboot
-  gather_facts: no    # the inventory probably contains non-existent hosts
+  gather_facts: false    # the inventory probably contains non-existent hosts
   connection: local
   tasks:
     - name: Start install role
       include_role:
-        name: install
+        name: build
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
         image: "{{ (loop_var.values() | list)[0].image }}"

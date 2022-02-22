@@ -39,7 +39,7 @@
   shell: "losetup -a | grep {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.zip','.img')}} | cut -d: -f1 | head -1"
   register: loopback
 
-- name: debug print loopback
+- name: Print loopback device
   debug:
     msg: "{{ loopback.stdout }}"
 

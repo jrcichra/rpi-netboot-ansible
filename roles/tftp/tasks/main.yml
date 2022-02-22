@@ -1,0 +1,12 @@
+---
+
+- name: "Start a TFTP docker container"
+  docker_container:
+    name: "{{ hostvars['localhost']['tftp_container']['name'] }}"
+    image: "{{ hostvars['localhost']['tftp_container']['image'] }}"
+    state: started
+    detach: true
+    ports:
+      - "69:69/udp"
+    volumes:
+      - "{{ hostvars['localhost']['tftp_dir'] }}:/tftproot"
