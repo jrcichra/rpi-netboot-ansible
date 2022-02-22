@@ -87,6 +87,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3-docker
+
       - name: Run download.yml
         run: ansible-playbook -i inventory.yml download.yml --extra-vars 'mirror=jrcichra.dev'
 
