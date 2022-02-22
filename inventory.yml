@@ -6,9 +6,6 @@ netboot:
       artifacts_dir: /tmp/rpi-netboot-ansible/artifacts
       tftp_dir: /tmp/rpi-netboot-ansible/tftproot
       filesystems_dir: /tmp/rpi-netboot-ansible/filesystems
-      tftp_container:
-       name: rpi-netboot-tftp
-       image: jrcichra/dnsmasq-tftp
       hosts:
         - pi01:
             mac: "00:00:00:00:00:00"

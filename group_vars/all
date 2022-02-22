@@ -1,4 +1,8 @@
 ---
+tftp_container:
+  name: rpi-netboot-tftp
+  image: jrcichra/dnsmasq-tftp
+
 download_links:
   official:
     raspberry_pi_os_32bit_desktop: https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2022-01-28/2022-01-28-raspios-bullseye-armhf.zip
