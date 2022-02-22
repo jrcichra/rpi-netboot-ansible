@@ -8,9 +8,11 @@
       include_role:
         name: install
       vars:
+        host: "{{ (loop_var.keys() | list) | first }}"
         image: "{{ (loop_var.values() | list)[0].image }}"
         mac: "{{ (loop_var.values() | list)[0].mac | replace(':','-') | lower }}"
         tftp_dir: "{{ hostvars['localhost']['tftp_dir'] }}"
+        filesystems_dir: "{{ hostvars['localhost']['filesystems_dir'] }}"
       loop: "{{ hostvars['localhost']['hosts'] }}"
       loop_control:
         loop_var: loop_var

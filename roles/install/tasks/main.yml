@@ -10,28 +10,33 @@
     path: "{{ tftp_dir }}/{{ mac }}"
     state: directory
 
+- name: "Make a directory for the filesystem data"
+  file:
+    path: "{{ filesystems_dir }}/{{ host }}"
+    state: directory
+
 - name: "Make a directory for mounting the boot partition"
   file:
-    path: "{{ playbook_dir }}/mnt/boot"
+    path: "{{ mounts_dir }}/boot"
     state: directory
 
 - name: "Make a directory for mounting the root partition"
   file:
-    path: "{{ playbook_dir }}/mnt/root"
+    path: "{{ mounts_dir }}/root"
     state: directory
 
 - name: "Extract the zip file"
   unarchive:
     src: "{{ playbook_dir }}/artifacts/{{ download_links[image] | basename }}"
     dest: "{{ playbook_dir }}/artifacts/"
-    creates: "{{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img') }}"
+    creates: "{{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img') }}"
 
 - name: "Mount the image as a loopback"
-  shell: "losetup --find --show --partscan --read-only {{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img') }}"
+  shell: "losetup --find --show --partscan --read-only {{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img') }}"
   become: true
 
 - name: "Find the loopback device"
-  shell: "losetup -a | grep {{ playbook_dir }}/artifacts/{{ download_links[image] | basename | replace('.zip','.img')}} | cut -d: -f1 | head -1"
+  shell: "losetup -a | grep {{ artifacts_dir }}/{{ download_links[image] | basename | replace('.zip','.img')}} | cut -d: -f1 | head -1"
   register: loopback
 
 - name: debug print loopback
@@ -39,22 +44,27 @@
     msg: "{{ loopback.stdout }}"
 
 - name: "Mount the boot partition"
-  shell: "mount -o ro {{ loopback.stdout }}p1 {{ playbook_dir }}/mnt/boot"
+  shell: "mount -o ro {{ loopback.stdout }}p1 {{ mounts_dir }}/boot"
   become: true
 
 - name: "Mount the root partition"
-  shell: "mount -o ro {{ loopback.stdout }}p2 {{ playbook_dir }}/mnt/root"
+  shell: "mount -o ro {{ loopback.stdout }}p2 {{ mounts_dir }}/root"
   become: true
 
-- name: Sleep for a few seconds
-  shell: sleep 5
+- name: Copy the boot files
+  shell: rsync -ax {{ mounts_dir }}/boot/ {{ tftp_dir }}/{{ mac }}/
+  become: true
+
+- name: Copy the root files
+  shell: rsync -ax {{ mounts_dir }}/root/ {{ filesystems_dir }}/{{ host }}/
+  become: true
 
 - name: "Unmount the root partition"
-  shell: "umount {{ playbook_dir }}/mnt/root"
+  shell: "umount {{ mounts_dir }}/root"
   become: true
 
 - name: "Unmount the boot partition"
-  shell: "umount {{ playbook_dir }}/mnt/boot"
+  shell: "umount {{ mounts_dir }}/boot"
   become: true
 
 - name: "Unmount the image"

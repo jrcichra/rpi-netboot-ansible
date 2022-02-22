@@ -1,11 +1,15 @@
 netboot:
   hosts:
     localhost:
-      tftp_dir: /home/justin/git/rpi-netboot-ansible/tftproot
+      ### CHANGE ME ###
+      mounts_dir: /tmp/rpi-netboot-ansible/mnt
+      artifacts_dir: /tmp/rpi-netboot-ansible/artifacts
+      tftp_dir: /tmp/rpi-netboot-ansible/tftproot
+      filesystems_dir: /tmp/rpi-netboot-ansible/filesystems
       hosts:
-        - cm4pi:
+        - pi01:
             mac: "00:00:00:00:00:00"
             image: raspberry_pi_os_64bit_desktop
-        - timpi:
+        - pi02:
             mac: "00:00:00:00:00:01"
             image: raspberry_pi_os_64bit_lite
