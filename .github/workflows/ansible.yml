@@ -25,9 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run download.yml
-        run: ansible-playbook -i inventory.yml download.yml --extra-vars 'mirror=jrcichra.dev'
-
-      - name: Run install.yml
-        run: ansible-playbook -i inventory.yml install.yml --extra-vars 'mirror=jrcichra.dev'
+      - name: Run Playbooks
+        run: |
+          ansible-playbook -i inventory.yml download.yml --extra-vars 'mirror=jrcichra.dev'
+          ansible-playbook -i inventory.yml install.yml --extra-vars 'mirror=jrcichra.dev'
