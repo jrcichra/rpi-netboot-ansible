@@ -11,7 +11,7 @@
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
         image: "{{ (loop_var.values() | list)[0].image }}"
-        mac: "{{ (loop_var.values() | list)[0].mac | replace(':','-') | lower }}"
+        serial: "{{ (loop_var.values() | list)[0].serial | replace(':','-') | lower }}"
         tftp_dir: "{{ hostvars['localhost']['tftp_dir'] }}"
         filesystems_dir: "{{ hostvars['localhost']['filesystems_dir'] }}"
         filesystem_dir: "{{ hostvars['localhost']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"

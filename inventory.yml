@@ -14,8 +14,8 @@ netboot:
         tftp_dir: /tmp/rpi-netboot-ansible/tftproot
       hosts:
         - pi01:
-            mac: "00:00:00:00:00:00"
+            serial: "abc12345"  # Boot your Pi without an SD card to see its serial number. It's the second number in the 'board' section
             image: raspberry_pi_os_64bit_desktop
         - pi02:
-            mac: "00:00:00:00:00:01"
+            serial: "xyz54321"
             image: raspberry_pi_os_64bit_lite

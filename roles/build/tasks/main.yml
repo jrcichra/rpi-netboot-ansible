@@ -5,9 +5,9 @@
     path: "{{ tftp_dir }}"
     state: directory
 
-- name: "Make a directory for the MAC address"
+- name: "Make a directory for the serial address"
   file:
-    path: "{{ tftp_dir }}/{{ mac }}"
+    path: "{{ tftp_dir }}/{{ serial }}"
     state: directory
 
 - name: "Make a directory for the filesystem data"
@@ -52,7 +52,7 @@
   become: true
 
 - name: Copy the boot files
-  shell: rsync -ax {{ mounts_dir }}/boot/ {{ tftp_dir }}/{{ mac }}/
+  shell: rsync -ax {{ mounts_dir }}/boot/ {{ tftp_dir }}/{{ serial }}/
   become: true
 
 - name: Copy the root files

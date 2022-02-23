@@ -30,7 +30,7 @@
 - name: "Configure /boot/cmdline.txt"
   template:
     src: "cmdline.j2"
-    dest: "{{ nfs_tftp_dir }}/{{ mac }}/cmdline.txt"
+    dest: "{{ nfs_tftp_dir }}/{{ serial }}/cmdline.txt"
     owner: root
     group: root
     mode: 0644

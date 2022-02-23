@@ -10,7 +10,7 @@
         name: configure
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
-        mac: "{{ (loop_var.values() | list)[0].mac | replace(':','-') | lower }}"
+        serial: "{{ (loop_var.values() | list)[0].serial | replace(':','-') | lower }}"
         nfs_host: "{{ hostvars['localhost']['nfs']['host'] }}"
         nfs_tftp_dir: "{{ hostvars['localhost']['nfs']['tftp_dir'] }}"
         nfs_filesystem_dir: "{{ hostvars['localhost']['nfs']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"
