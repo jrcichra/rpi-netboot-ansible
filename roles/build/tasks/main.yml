@@ -12,7 +12,7 @@
 
 - name: "Make a directory for the filesystem data"
   file:
-    path: "{{ filesystems_dir }}/{{ host }}"
+    path: "{{ filesystem_dir }}"
     state: directory
 
 - name: "Make a directory for mounting the boot partition"
@@ -56,7 +56,7 @@
   become: true
 
 - name: Copy the root files
-  shell: rsync -ax {{ mounts_dir }}/root/ {{ filesystems_dir }}/{{ host }}/
+  shell: rsync -ax {{ mounts_dir }}/root/ {{ filesystem_dir }}/
   become: true
 
 - name: "Unmount the root partition"

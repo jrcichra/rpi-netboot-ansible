@@ -1,19 +1,19 @@
 ---
-# install role
+# configure role
 
 - hosts: netboot
   gather_facts: false    # the inventory probably contains non-existent hosts
   connection: local
   tasks:
-    - name: Start install role
+    - name: Start configure role
       include_role:
-        name: build
+        name: configure
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
-        image: "{{ (loop_var.values() | list)[0].image }}"
         mac: "{{ (loop_var.values() | list)[0].mac | replace(':','-') | lower }}"
-        tftp_dir: "{{ hostvars['localhost']['tftp_dir'] }}"
-        filesystems_dir: "{{ hostvars['localhost']['filesystems_dir'] }}"
+        nfs_host: "{{ hostvars['localhost']['nfs']['host'] }}"
+        nfs_tftp_dir: "{{ hostvars['localhost']['nfs']['tftp_dir'] }}"
+        nfs_filesystem_dir: "{{ hostvars['localhost']['nfs']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"
         filesystem_dir: "{{ hostvars['localhost']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"
       loop: "{{ hostvars['localhost']['hosts'] }}"
       loop_control:

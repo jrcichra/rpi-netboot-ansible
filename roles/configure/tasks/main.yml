@@ -1,0 +1,37 @@
+---
+
+- name: "Configure /etc/hosts"
+  template:
+    src: "hosts.j2"
+    dest: "{{ filesystem_dir }}/etc/hosts"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: "Configure /etc/hostname"
+  template:
+    src: "hostname.j2"
+    dest: "{{ filesystem_dir }}/etc/hostname"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: "Configure /etc/fstab"
+  template:
+    src: "fstab.j2"
+    dest: "{{ filesystem_dir }}/etc/fstab"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: "Configure /boot/cmdline.txt"
+  template:
+    src: "cmdline.j2"
+    dest: "{{ nfs_tftp_dir }}/{{ mac }}/cmdline.txt"
+    owner: root
+    group: root
+    mode: 0644
+  become: true

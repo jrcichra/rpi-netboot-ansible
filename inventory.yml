@@ -6,6 +6,12 @@ netboot:
       artifacts_dir: /tmp/rpi-netboot-ansible/artifacts
       tftp_dir: /tmp/rpi-netboot-ansible/tftproot
       filesystems_dir: /tmp/rpi-netboot-ansible/filesystems
+      nfs:
+        host: "10.0.0.223"
+        # filesystem root as seen from an nfs client
+        filesystems_dir: /tmp/rpi-netboot-ansible/filesystems
+        # tftp dir as seen from an nfs client
+        tftp_dir: /tmp/rpi-netboot-ansible/tftproot
       hosts:
         - pi01:
             mac: "00:00:00:00:00:00"
