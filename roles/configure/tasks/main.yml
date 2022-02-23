@@ -35,3 +35,8 @@
     group: root
     mode: 0644
   become: true
+
+- name: "Enable SSH"
+  file:
+    path: "{{ nfs_tftp_dir }}/{{ serial }}/ssh"
+    state: touch
