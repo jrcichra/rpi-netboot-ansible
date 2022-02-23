@@ -40,3 +40,4 @@
   file:
     path: "{{ nfs_tftp_dir }}/{{ serial }}/ssh"
     state: touch
+  become: true
