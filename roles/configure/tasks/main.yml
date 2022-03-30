@@ -38,7 +38,7 @@
 - name: "Enable SSH"
   file:
     src: /lib/systemd/system/ssh.service
-    dest: /etc/systemd/system/sshd.service
+    dest: "{{ filesystem_dir }}/etc/systemd/system/sshd.service"
     owner: root
     group: root
     state: link
