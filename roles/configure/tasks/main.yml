@@ -1,5 +1,4 @@
 ---
-
 - name: "Configure /etc/hosts"
   template:
     src: "hosts.j2"
@@ -38,6 +37,9 @@
 
 - name: "Enable SSH"
   file:
-    path: "{{ nfs_tftp_dir }}/{{ serial }}/ssh"
-    state: touch
+    src: /lib/systemd/system/ssh.service
+    dest: /etc/systemd/system/sshd.service
+    owner: root
+    group: root
+    state: link
   become: true
