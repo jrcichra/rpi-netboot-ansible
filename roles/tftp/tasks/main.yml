@@ -5,6 +5,7 @@
     name: "{{ hostvars['localhost']['tftp_container']['name'] }}"
     image: "{{ hostvars['localhost']['tftp_container']['image'] }}"
     state: started
+    restart_policy: unless-stopped
     detach: true
     ports:
       - "69:69/udp"

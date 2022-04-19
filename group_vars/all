@@ -5,15 +5,15 @@ tftp_container:
 
 download_links:
   official:
-    raspberry_pi_os_32bit_desktop: https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2022-01-28/2022-01-28-raspios-bullseye-armhf.zip
-    raspberry_pi_os_32bit_lite: https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2022-01-28/2022-01-28-raspios-bullseye-armhf-lite.zip
-    raspberry_pi_os_64bit_desktop: https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2022-01-28/2022-01-28-raspios-bullseye-arm64.zip
-    raspberry_pi_os_64bit_lite: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-01-28/2022-01-28-raspios-bullseye-arm64-lite.zip
+    raspberry_pi_os_32bit_desktop: https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2022-04-07/2022-04-04-raspios-bullseye-armhf.img.xz
+    raspberry_pi_os_32bit_lite: https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2022-04-07/2022-04-04-raspios-bullseye-armhf-lite.img.xz
+    raspberry_pi_os_64bit_desktop: https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2022-04-07/2022-04-04-raspios-bullseye-arm64.img.xz
+    raspberry_pi_os_64bit_lite: https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2022-04-07/2022-04-04-raspios-bullseye-arm64-lite.img.xz
   jrcichra.dev:
     # Remove the strain of CI downloads on Raspberry Pi Servers. I'll take the bandwidth (and maybe Cloudflare will cache it?)
-    raspberry_pi_os_32bit_desktop: https://minio.jrcichra.dev/raspberrypi-mirror/2022-01-28-raspios-bullseye-armhf.zip
-    raspberry_pi_os_32bit_lite: https://minio.jrcichra.dev/raspberrypi-mirror/2022-01-28-raspios-bullseye-armhf-lite.zip
-    raspberry_pi_os_64bit_desktop: https://minio.jrcichra.dev/raspberrypi-mirror/2022-01-28-raspios-bullseye-arm64.zip
-    raspberry_pi_os_64bit_lite: https://minio.jrcichra.dev/raspberrypi-mirror/2022-01-28-raspios-bullseye-arm64-lite.zip
+    raspberry_pi_os_32bit_desktop: https://minio.jrcichra.dev/raspberrypi-mirror/2022-04-04-raspios-bullseye-armhf.img.xz
+    raspberry_pi_os_32bit_lite: https://minio.jrcichra.dev/raspberrypi-mirror/2022-04-04-raspios-bullseye-armhf-lite.img.xz
+    raspberry_pi_os_64bit_desktop: https://minio.jrcichra.dev/raspberrypi-mirror/2022-04-04-raspios-bullseye-arm64.img.xz
+    raspberry_pi_os_64bit_lite: https://minio.jrcichra.dev/raspberrypi-mirror/2022-04-04-raspios-bullseye-arm64-lite.img.xz
 
 mirror: official  # set mirror here
