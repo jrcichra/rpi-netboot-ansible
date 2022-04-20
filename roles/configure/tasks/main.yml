@@ -52,3 +52,15 @@
     group: root
     state: link
   become: true
+
+- name: "Read current user's public SSH key"
+  slurp:
+    src: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
+  register: ssh_key
+
+- name: "Copy SSH key"
+  lineinfile:
+    create: yes
+    line: "{{ ssh_key['content'] | b64decode }}"
+    path: "{{ filesystem_dir }}/home/pi/.ssh/authorized_keys"
+
