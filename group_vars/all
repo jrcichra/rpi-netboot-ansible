@@ -13,7 +13,7 @@ download_links:
     # Remove the strain of CI downloads on Raspberry Pi Servers. I'll let Cloudflare take the bandwidth
     raspberry_pi_os_32bit_desktop: https://raspberrypi-mirror.jrcichra.workers.dev/2022-04-04-raspios-bullseye-armhf.img.xz
     raspberry_pi_os_32bit_lite: https://raspberrypi-mirror.jrcichra.workers.dev/2022-04-04-raspios-bullseye-armhf-lite.img.xz
-    raspberry_pi_os_64bit_desktop: https://raspberrypi-mirror.jrcichra.workers.dev2022-04-04-raspios-bullseye-arm64.img.xz
+    raspberry_pi_os_64bit_desktop: https://raspberrypi-mirror.jrcichra.workers.dev/2022-04-04-raspios-bullseye-arm64.img.xz
     raspberry_pi_os_64bit_lite: https://raspberrypi-mirror.jrcichra.workers.dev/2022-04-04-raspios-bullseye-arm64-lite.img.xz
 
 mirror: official # set mirror here
