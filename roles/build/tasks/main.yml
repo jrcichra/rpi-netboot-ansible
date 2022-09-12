@@ -26,6 +26,7 @@
 
 - name: "Extract the zip file"
   shell: "unxz {{ artifacts_dir }}/{{ download_links[mirror][image] | basename }}"
+  ignore_errors: true
 
 - name: "Mount the image as a loopback"
   shell: "losetup --find --show --partscan --read-only {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.xz','') }}"
