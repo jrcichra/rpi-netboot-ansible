@@ -40,6 +40,10 @@ This is an early project that is still in development. Do not use this with prod
 - Check the Ansible Playbook errors
 - Check the TFTP server logs with `docker logs <container-id>`
 
+## Raspberry Pi 3B
+
+If you're trying to boot a Raspberry Pi 3B and it never sends out a DHCP request, try plugging it in to a different switch for its first hop. For me 50% of my switches worked, 50% of my switches did not. Not even a brand new TPLink managed switch.
+
 # TODO
 
 - Combine playbooks into a single top-level playbook to make it easier to run
