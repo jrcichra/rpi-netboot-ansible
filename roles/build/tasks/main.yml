@@ -9,61 +9,80 @@
     path: "{{ tftp_dir }}/{{ ip }}"
     state: directory
 
+- name: Skip everything else if the filesystem already exists
+  stat:
+    path: "{{ filesystem_dir }}"
+  register: filesystem_dir_exists
+
 - name: "Make a directory for the filesystem data"
   file:
     path: "{{ filesystem_dir }}"
     state: directory
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Make a directory for mounting the boot partition"
   file:
     path: "{{ mounts_dir }}/boot"
     state: directory
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Make a directory for mounting the root partition"
   file:
     path: "{{ mounts_dir }}/root"
     state: directory
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Extract the zip file"
   shell: "unxz {{ artifacts_dir }}/{{ download_links[mirror][image] | basename }}"
   ignore_errors: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Mount the image as a loopback"
   shell: "losetup --find --show --partscan --read-only {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.xz','') }}"
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Find the loopback device"
   shell: "losetup -a | grep {{ artifacts_dir }}/{{ download_links[mirror][image] | basename | replace('.xz','')}} | cut -d: -f1 | head -1"
   register: loopback
+  when: not filesystem_dir_exists.stat.exists
 
 - name: Print loopback device
   debug:
     msg: "{{ loopback.stdout }}"
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Mount the boot partition"
   shell: "mount -o ro {{ loopback.stdout }}p1 {{ mounts_dir }}/boot"
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Mount the root partition"
   shell: "mount -o ro {{ loopback.stdout }}p2 {{ mounts_dir }}/root"
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: Copy the boot files
   shell: rsync -ax {{ mounts_dir }}/boot/ {{ tftp_dir }}/{{ ip }}/
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: Copy the root files
   shell: rsync -ax {{ mounts_dir }}/root/ {{ filesystem_dir }}/
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Unmount the root partition"
   shell: "umount {{ mounts_dir }}/root"
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Unmount the boot partition"
   shell: "umount {{ mounts_dir }}/boot"
   become: true
+  when: not filesystem_dir_exists.stat.exists
 
 - name: "Unmount the image"
   shell: "losetup -d {{ loopback.stdout }}"
   become: true
+  when: not filesystem_dir_exists.stat.exists

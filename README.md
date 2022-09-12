@@ -6,7 +6,7 @@ Inspired by Wendell: https://forum.level1techs.com/t/the-ultimate-home-server-he
 
 This set of playbooks configures your NAS to boot Pis from a network. It makes it simple to add new Pis from official images.
 
-This is an early project that is still in development. Do not use this with production workloads. I have qualified the playbooks and they are able to boot a Pi from the network in their current state. I need to put protections in place that prevent the boot and root filesystems from being overwritten if they already exist. For now, removing old installs should be left to the user until we're comfortable with the tooling.
+This is an early project that is still in development. Do not use this with production workloads. I have qualified the playbooks and they are able to boot a Pi from the network in their current state. I need to put protections in place that prevent the boot and root filesystems from being overwritten if they already exist. You may want to limit the concurrent systems in `inventory.yml` to one, and comment out ones you've created.
 
 # Dependencies
 
