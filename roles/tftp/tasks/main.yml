@@ -10,4 +10,5 @@
       - "69:69/udp"
     volumes:
       - "{{ hostvars['localhost']['tftp_dir'] }}:/tftproot"
+      - /etc/localtime:/etc/localtime:ro
     command: -directory /tftproot
