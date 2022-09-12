@@ -1,7 +1,7 @@
 ---
 tftp_container:
   name: rpi-netboot-tftp
-  image: ghcr.io/jrcichra/dnsmasq-tftp
+  image: ghcr.io/jrcichra/tftp-pxe-server
 
 download_links:
   official:

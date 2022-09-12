@@ -1,5 +1,4 @@
 ---
-
 - name: "Start a TFTP docker container"
   docker_container:
     name: "{{ hostvars['localhost']['tftp_container']['name'] }}"
@@ -11,3 +10,4 @@
       - "69:69/udp"
     volumes:
       - "{{ hostvars['localhost']['tftp_dir'] }}:/tftproot"
+    command: -directory /tftproot
