@@ -29,7 +29,7 @@
 - name: "Configure /boot/cmdline.txt"
   template:
     src: "cmdline.j2"
-    dest: "{{ nfs_tftp_dir }}/{{ serial }}/cmdline.txt"
+    dest: "{{ nfs_tftp_dir }}/{{ ip }}/cmdline.txt"
     owner: root
     group: root
     mode: 0644
@@ -63,4 +63,3 @@
     create: yes
     line: "{{ ssh_key['content'] | b64decode }}"
     path: "{{ filesystem_dir }}/home/pi/.ssh/authorized_keys"
-

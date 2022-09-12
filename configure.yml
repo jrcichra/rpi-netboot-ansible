@@ -2,7 +2,7 @@
 # configure role
 
 - hosts: netboot
-  gather_facts: false    # the inventory probably contains non-existent hosts
+  gather_facts: false # the inventory probably contains non-existent hosts
   connection: local
   tasks:
     - name: Start configure role
@@ -10,7 +10,7 @@
         name: configure
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
-        serial: "{{ (loop_var.values() | list)[0].serial | replace(':','-') | lower }}"
+        ip: "{{ (loop_var.values() | list)[0].ip | replace(':','-') | lower }}"
         nfs_host: "{{ hostvars['localhost']['nfs']['host'] }}"
         nfs_tftp_dir: "{{ hostvars['localhost']['nfs']['tftp_dir'] }}"
         nfs_filesystem_dir: "{{ hostvars['localhost']['nfs']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"

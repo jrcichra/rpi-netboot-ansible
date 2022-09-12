@@ -2,7 +2,7 @@
 # install role
 
 - hosts: netboot
-  gather_facts: false    # the inventory probably contains non-existent hosts
+  gather_facts: false # the inventory probably contains non-existent hosts
   connection: local
   tasks:
     - name: Start install role
@@ -11,7 +11,7 @@
       vars:
         host: "{{ (loop_var.keys() | list) | first }}"
         image: "{{ (loop_var.values() | list)[0].image }}"
-        serial: "{{ (loop_var.values() | list)[0].serial | replace(':','-') | lower }}"
+        ip: "{{ (loop_var.values() | list)[0].ip | replace(':','-') | lower }}"
         tftp_dir: "{{ hostvars['localhost']['tftp_dir'] }}"
         filesystems_dir: "{{ hostvars['localhost']['filesystems_dir'] }}"
         filesystem_dir: "{{ hostvars['localhost']['filesystems_dir'] }}/{{ (loop_var.keys() | list) | first }}"

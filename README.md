@@ -11,7 +11,7 @@ This is an early project that is still in development. Do not use this with prod
 # Dependencies
 
 - DHCP server with Option 66 set to the IP of the NFS/TFTP server (for now this playbook assumes they are the same system)
-- The serial numbers of the Pis you wish to boot (See `inventory.yml` on how to get this)
+- The static DHCP IP addresses of the Pis you wish to boot
 - [Ansible](https://www.ansible.com/) on the system running the playbook (for now the playbook assumes you are running Ansible on the NFS/TFTP server)
 - A pre-configured NFS server (TODO: make a playbook for this). I'm using ZFS's `sharenfs` feature.
 - Docker (I've configured the TFTP server to run in a Docker container to avoid changing the host's `dnsmasq` configuration)
@@ -20,7 +20,7 @@ This is an early project that is still in development. Do not use this with prod
 # Usage
 
 - Complete `inventory.yml` with paths as seen from your server and from nfs.
-- Complete `inventory.yml` with an array of Pi hostnames, serial numbers, and images (see `group_vars/all` for a list of choices or add your own)
+- Complete `inventory.yml` with an array of Pi hostnames, IP addresses, and images (see `group_vars/all` for a list of choices or add your own)
 - Download the images required with `ansible-playbook -i inventory.yml download.yml`.
 - Build the filesystems for the Pis with `ansible-playbook -i inventory.yml build.yml`.
 - Configure the Pi's specific settings (i.e hostname) with `ansible-playbook -i inventory.yml configure.yml`.
