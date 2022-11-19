@@ -6,6 +6,7 @@
     state: started
     restart_policy: unless-stopped
     detach: true
+    pull: true
     ports:
       - "69:69/udp"
     volumes:
