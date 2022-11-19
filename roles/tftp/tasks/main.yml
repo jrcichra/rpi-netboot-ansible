@@ -7,9 +7,8 @@
     restart_policy: unless-stopped
     detach: true
     pull: true
-    ports:
-      - "69:69/udp"
     volumes:
-      - "{{ hostvars['localhost']['tftp_dir'] }}:/tftproot"
+      - "{{ hostvars['localhost']['tftp_dir'] }}:/tftproot:shared"
       - /etc/localtime:/etc/localtime:ro
-    command: -directory /tftproot
+    command: -directory /tftproot -timeout 60
+    network_mode: host
